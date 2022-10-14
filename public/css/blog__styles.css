@@ -108,6 +108,10 @@ nav ul li {
   padding: 0 7px;
 }
 
+.mobile__nav {
+  display: none;
+}
+
 .nav__links {
   color: #000;
   font-weight: 600;

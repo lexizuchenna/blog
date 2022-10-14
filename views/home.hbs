@@ -4,7 +4,7 @@
       <div>
         <a href="index.html" aria-current="page" class="logo">
           <img
-            src="/images/logo.png"
+            src="/images/code_logo.png"
             loading="lazy"
             width="130"
             sizes="(max-width: 479px) 31vw, (max-width: 767px) 17vw, (max-width: 991px) 15vw, 130px"
@@ -102,6 +102,23 @@
           <li><a href="/health" class="nav__links">Health</a></li>
         </ul>
       </nav>
+      <div class="menu__btn">
+        <div class="__closed closed__btn" id="closed">
+          <img src="/images/closed.svg" alt="" />
+        </div>
+        <div class="__open open__btn" id="open">
+          <img src="/images/open.svg" alt="" />
+        </div>
+      </div>
+      <div class="mobile__nav _closed" id="mobile-nav">
+        <ul>
+          <li><a href="/" class="nav__links active">Home</a></li>
+          <li><a href="/about" class="nav__links">About</a></li>
+          <li><a href="/world" class="nav__links">World</a></li>
+          <li><a href="/business" class="nav__links">Business</a></li>
+          <li><a href="/health" class="nav__links">Health</a></li>
+        </ul>
+      </div>
       <form action="" class="nav__search">
         <input type="text" placeholder="Search..." />
         <button>
@@ -434,7 +451,7 @@
       <div>
         <a href="index.html" aria-current="page" class="logo">
           <img
-            src="/images/logo.png"
+            src="/images/code_logo.png"
             loading="lazy"
             width="130"
             sizes="(max-width: 479px) 31vw, (max-width: 767px) 17vw, (max-width: 991px) 15vw, 130px"
@@ -449,14 +466,14 @@
       </div>
       <div class="footer__nav">
         <nav class="__flex">
-        <ul>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
-          <li><a href="/science" class="nav__links">Science</a></li>
-          <li><a href="/food" class="nav__links">Food</a></li>
-        </ul>
-      </nav>
+          <ul>
+            <li><a href="/world" class="nav__links">World</a></li>
+            <li><a href="/business" class="nav__links">Business</a></li>
+            <li><a href="/health" class="nav__links">Health</a></li>
+            <li><a href="/science" class="nav__links">Science</a></li>
+            <li><a href="/food" class="nav__links">Food</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
     <div class="footer__links">
@@ -465,12 +482,12 @@
       </div>
       <div class="footer__nav">
         <nav class="__flex">
-        <ul>
-          <li><a href="/" class="nav__links">Home</a></li>
-          <li><a href="/about" class="nav__links">About</a></li>
-          <li><a href="/contact" class="nav__links">Contact</a></li>
-        </ul>
-      </nav>
+          <ul>
+            <li><a href="/" class="nav__links">Home</a></li>
+            <li><a href="/about" class="nav__links">About</a></li>
+            <li><a href="/contact" class="nav__links">Contact</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
     <div class="footer__form">
@@ -479,7 +496,7 @@
       </div>
       <form action="">
         <div class="input__button">
-          <input type="email" name="email" placeholder="Enter Email">
+          <input type="email" name="email" placeholder="Enter Email" />
           <button>Subscribe</button>
         </div>
       </form>
@@ -522,4 +539,20 @@
 };
 
 move(box, 'left', 1700)
+
+const closed = document.getElementById('closed')
+const open = document.getElementById('open')
+const mobileNav = document.getElementById('mobile-nav')
+
+closed.addEventListener('click', () => {
+  mobileNav.classList.toggle('_closed')
+  open.style.display = 'block'
+  closed.style.display = 'none'
+})
+
+open.addEventListener('click', () => {
+  mobileNav.classList.toggle('_closed')
+  open.style.display = 'none'
+  closed.style.display = 'block'
+})
 </script>
