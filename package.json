@@ -1,0 +1,38 @@
+{
+  "name": "code-blog",
+  "version": "1.0.0",
+  "description": "Code Blog, Read Wonderful Content",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lexizuchenna/code_blog.git"
+  },
+  "keywords": [
+    "BLOG"
+  ],
+  "author": "Alexander",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lexizuchenna/code_blog/issues"
+  },
+  "homepage": "https://github.com/lexizuchenna/code_blog#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "moment": "^2.29.4",
+    "mongoose": "^6.6.5",
+    "nodemailer": "^6.8.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  }
+}
