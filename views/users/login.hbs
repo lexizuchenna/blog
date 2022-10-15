@@ -96,7 +96,7 @@
       <nav class="__flex">
         <ul>
           <li><a href="/" class="nav__links">Home</a></li>
-          <li><a href="/about" class="nav__links">About</a></li>
+          <li><a href="/about" class="nav__links active">About</a></li>
           <li><a href="/world" class="nav__links">World</a></li>
           <li><a href="/business" class="nav__links">Business</a></li>
           <li><a href="/health" class="nav__links">Health</a></li>
@@ -135,154 +135,30 @@
   </div>
 </header>
 
-<div class="inline__posts">
-  <div class="__container">
-    <div class="section__heading">
-      <h3>Business</h3>
-    </div>
-    <div class="__flex">
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1c62fad35eb7eeb910fc3_blog-4.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
+<main class="__post __contact">
+  <div class="__container __flex">
+    <h2 class="post__title">Login to your account</h2>
+    <div class="contact__form">
+      <form action="/users/login" method="POST">
+        <div class="contact__form__group">
+          <input
+            type="text"
+            placeholder="Enter your username"
+            name="username"
+          />
         </div>
-
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">March, 2021</data>
+        <div class="contact__form__group">
+          <input
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+          />
         </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Mayors agree, Congress should invest in affordable
-              housing</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1c62fad35eb7eeb910fc3_blog-4.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">March, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Mayors agree, Congress should invest in affordable
-              housing</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1fb889b01c6359edf770a_blog-25.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">World</a></data>
-          <data role="date" class="date">October, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2><a href="">Not who has much is rich, but who gives much</a></h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">January, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Report: $47 minimum wage bill would benefit 40.7 million
-              workers</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">January, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Report: $47 minimum wage bill would benefit 40.7 million
-              workers</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
+        <button type="submit">Login</button>
+      </form>
     </div>
   </div>
-</div>
+</main>
 
 <footer>
   <div class="__container __flex">

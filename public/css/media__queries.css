@@ -18,6 +18,18 @@ body {
     min-width: 100%;
     flex: 2;
   }
+
+  /*  
+    ----------------
+      POST START
+    ----------------
+*/
+
+  /*  
+    ----------------
+      POST END
+    ----------------
+*/
 }
 
 @media (max-width: 600px) {
@@ -57,7 +69,7 @@ body {
   }
 
   ._closed {
-    left: -100px;
+    left: -150px;
     transition: left ease-in-out;
     transition-delay: 5s;
   }
@@ -102,6 +114,18 @@ body {
   .medium__text__container {
     width: 100%;
   }
+
+  /*  
+    ----------------
+      POST START
+    ----------------
+*/
+
+  /*  
+    ----------------
+      POST END
+    ----------------
+*/
 }
 
 @media (max-width: 450px) {
@@ -125,4 +149,34 @@ body {
     width: 100%;
     margin-top: 15px;
   }
+
+    /*  
+    ----------------
+      POST START
+    ----------------
+    */
+
+    .inline__posts .__flex {
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .inline__posts .small__image__container,
+      .inline__posts .small__post {
+        width: 100%;
+      }
+
+    /*  
+    ----------------
+      POST END
+    ----------------
+    */
+}
+
+@media(max-width: 300px) {
+    .post__header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

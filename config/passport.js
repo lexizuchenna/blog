@@ -10,12 +10,12 @@ module.exports = (passport) => {
           return done(err);
         }
         if (!user) {
-          return done(null, false, { msg: "User does not exist" });
+          return done(null, false, { message: "User does not exist" });
         }
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) throw err;
           if (!isMatch) {
-            return done(null, false, { msg: "Incorrect password" });
+            return done(null, false, { message: "Incorrect password" });
           }
         });
         return done(null, user);

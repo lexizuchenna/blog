@@ -46,6 +46,18 @@ article {
   border-bottom: 1px solid var(--lighter-gray-color);
 }
 
+.__btn {
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-family: var(--primary-font);
+}
+
 /* Color */
 
 .business__color {
@@ -458,3 +470,216 @@ footer nav ul li {
   border: none;
   cursor: pointer;
 }
+
+/*  
+    ----------------
+      HOME END
+    ----------------
+*/
+
+/*  
+    ----------------
+      CONTACT START
+    ----------------
+*/
+
+.__contact .__flex {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.__lead {
+  font-weight: 600;
+  margin: 10px 0 15px 0;
+  font-size: 17px;
+}
+
+.__contact a {
+  color: #000;
+}
+
+.contact__form {
+  margin-bottom: 15px;
+}
+
+.contact__form form {
+  width: 350px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.contact__form h2 {
+  font-size: 15px;
+}
+
+.contact__form__group {
+  margin-bottom: 15px;
+}
+
+.contact__form__group input,
+.contact__form__group select {
+  height: 55px;
+  margin-bottom: 0px;
+  padding-left: 20px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.custom__file {
+  cursor: pointer;
+}
+
+.custom__file::-webkit-file-upload-button {
+  visibility: hidden;
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+.custom__file::before {
+  content: 'Select an image';
+  
+  
+}
+
+.contact__form__group textarea {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.contact__form button {
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #000;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+/*  
+    ----------------
+      CONTACT END
+    ----------------
+*/
+
+/*  
+    ----------------
+      POST START
+    ----------------
+*/
+.__post .__container {
+  max-width: 780px;
+}
+
+.__post h2 {
+  text-align: center;
+  font-family: var(--secondary-font);
+  padding: 10px 0;
+}
+
+.post__image {
+  width: 100%;
+}
+
+.post__image img {
+  width: 100%;
+}
+
+.post__body {
+  font-family: var(--secondary-font);
+  padding: 20px 40px;
+}
+
+.inline__posts .__flex {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.inline__posts .small__image__container,
+.inline__posts .small__post {
+  width: 215px;
+}
+
+/*  
+    ----------------
+      POST END
+    ----------------
+*/
+
+/*  
+    ----------------
+      USERS START
+    ----------------
+*/
+
+.user__actions li {
+  display: inline-block;
+  font-size: 13px;
+  padding: 0 7px;
+}
+
+.__greeting {
+  margin: 0 0 20px 0;
+}
+
+.__writers {
+  min-height: 60vh;
+}
+
+.__writers table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.__writers table td,
+.__writers table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.__writers table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.__writers table tr:hover {
+  background-color: #ddd;
+}
+
+.__writers table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #6b6b6b;
+  color: white;
+}
+
+.action {
+  font-weight: 700;
+}
+
+.delete {
+  color: red;
+}
+
+.edit {
+  color: blue;
+}
+
+.visit {
+  color: #000;
+}
+
+/*  
+    ----------------
+     USERS END
+    ----------------
+*/

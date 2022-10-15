@@ -7,6 +7,11 @@ const UserSchema = mongoose.Schema(
       required: true,
       default: "codeblog",
     },
+    username: {
+      type: String,
+      required: true,
+      default: "codeblog",
+    },
     email: {
       type: String,
       required: true,
@@ -18,6 +23,10 @@ const UserSchema = mongoose.Schema(
     role: {
       type: String,
       required: true,
+    },
+    numberOfPosts: {
+      type: String,
+      default: 0,
     },
   },
   {
