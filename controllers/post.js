@@ -1,19 +1,44 @@
 const Posts = require("../models/Post");
 
 const getSinglePost = async (req, res) => {
-  const { link, author } = req.params;
-  console.log(author);
-  console.log(link);
-
+  const { link } = req.params;
   const post = await Posts.findOne({ link }).lean();
-//   console.log(post);
-  return res.status(200).render("posts/post", { post });
+
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  } 
+
+  return res.status(200).render("posts/post", { post, categories, isAuth, user });
 };
 
 const getPostsByCategory = async (req, res) => {
   const { category } = req.query;
-  const posts = await Posts.find({category}).lean()
-  return res.status(200).render("posts/category", {posts, category});
+  const categoryPosts = await Posts.find({category}).lean()
+
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  } 
+  return res.status(200).render("posts/category", {categoryPosts, categories});
 };
 
 module.exports = {

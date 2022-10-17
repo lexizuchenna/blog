@@ -1,0 +1,70 @@
+<footer>
+  <div class="__container __flex">
+    <div class="footer__logo">
+      <div>
+        <a href="index.html" aria-current="page" class="logo">
+          <img
+            src="/images/code_logo.png"
+            loading="lazy"
+            width="130"
+            sizes="(max-width: 479px) 31vw, (max-width: 767px) 17vw, (max-width: 991px) 15vw, 130px"
+            alt="code"
+          />
+        </a>
+      </div>
+    </div>
+    <div class="footer__categories">
+      <div class="footer__head">
+        <h4>Categories</h4>
+      </div>
+      <div class="footer__nav">
+        <nav class="__flex">
+          <ul>
+            {{#if categories}}
+              {{#each categories}}
+                <li><a
+                    href="/posts/category?category={{this}}"
+                    class="nav__links"
+                  >{{this}}</a></li>
+              {{/each}}
+            {{/if}}
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__links">
+      <div class="footer__head">
+        <h4>Useful Links</h4>
+      </div>
+      <div class="footer__nav">
+        <nav class="__flex">
+          <ul>
+            <li><a href="/" class="nav__links">Home</a></li>
+            <li><a href="/about" class="nav__links">About</a></li>
+            <li><a href="/contact" class="nav__links">Contact</a></li>
+            {{#if isAuth}}
+            <li><a href="/users/{{user}}/dashboard" class="nav__links">Dashboard</a></li>
+            {{else}}
+            <li><a href="/users/login" class="nav__links">Login</a></li>
+            {{/if}}
+            <li>
+              <a href="/terms-and-conditions" class="nav__links">Terms</a>
+            </li>
+            <li><a href="/privacy" class="nav__links">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="footer__form">
+      <div class="footer__head">
+        <h4>Subscribe</h4>
+      </div>
+      <form action="">
+        <div class="input__button">
+          <input type="email" name="email" placeholder="Enter Email" />
+          <button>Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</footer>

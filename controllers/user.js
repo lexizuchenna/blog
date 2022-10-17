@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 
@@ -8,12 +7,27 @@ const Posts = require("../models/Post");
 
 // View Login Page
 const viewLogin = async (req, res) => {
-  res.render("users/login", {
-    errors: req.flash("errors"),
-    success: req.flash("success"),
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
   });
 
-  console.log(req.isAuthenticated());
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
+  return res.render("users/login", {
+    errors: req.flash("errors"),
+    success: req.flash("success"),
+    categories,
+    isAuth,
+    user,
+  });
 };
 
 const logoutUser = async (req, res, next) => {
@@ -25,13 +39,29 @@ const logoutUser = async (req, res, next) => {
 
 // View Admin Dashboard
 const viewAdmin = async (req, res) => {
-  let data = await Users.find().lean();
+  let usersData = await Users.find().lean();
   let posts = await Posts.find().lean();
 
-  let users = data.filter((user) => user.username !== "admin");
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
+  let users = usersData.filter((user) => user.username !== "admin");
   return res.render("users/admin/dashboard", {
     users,
     posts,
+    categories,
+    isAuth,
+    user,
     errors: req.flash("errors"),
     success: req.flash("success"),
   });
@@ -39,9 +69,26 @@ const viewAdmin = async (req, res) => {
 
 // View Register User
 const viewRegisterUser = async (req, res) => {
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
   return res.render("users/admin/register-user", {
     errors: req.flash("errors"),
     success: req.flash("success"),
+    categories,
+    isAuth,
+    user,
   });
 };
 
@@ -118,33 +165,101 @@ const adminPost = async (req, res) => {
 
 // View Admin Setting
 const viewAdminSetting = async (req, res) => {
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
   return res.render("users/admin/setting", {
     errors: req.flash("errors"),
     success: req.flash("success"),
+    categories,
+    isAuth,
+    user,
   });
 };
 
 // View Writer Dashboard
 const viewWriter = async (req, res) => {
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
   return res.render("users/writer/dashboard", {
     errors: req.flash("errors"),
     success: req.flash("success"),
+    categories,
+    isAuth,
+    user,
   });
 };
 
 // Create A Post in Writer
 const viewCreateWriterPost = async (req, res) => {
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
   return res.render("users/writer/create-post", {
     errors: req.flash("errors"),
     success: req.flash("success"),
+    categories,
+    isAuth,
+    user,
   });
 };
 
 // View Writer Setting
 const viewWriterSetting = async (req, res) => {
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
   return res.render("users/writer/setting", {
     errors: req.flash("errors"),
     success: req.flash("success"),
+    categories,
+    isAuth,
+    user,
   });
 };
 
