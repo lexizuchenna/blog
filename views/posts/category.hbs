@@ -97,9 +97,14 @@
         <ul>
           <li><a href="/" class="nav__links">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
+          {{#if category}}
+            {{#each category}}
+              <li><a
+                  href="/posts/category?category={{this}}"
+                  class="nav__links"
+                >{{this}}</a></li>
+            {{/each}}
+          {{/if}}
         </ul>
       </nav>
       <div class="menu__btn">
@@ -114,9 +119,14 @@
         <ul>
           <li><a href="/" class="nav__links active">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
+          {{#if category}}
+            {{#each category}}
+              <li><a
+                  href="/posts/category?category={{this}}"
+                  class="nav__links"
+                >{{this}}</a></li>
+            {{/each}}
+          {{/if}}
         </ul>
       </div>
       <form action="" class="nav__search">
@@ -142,39 +152,41 @@
     </div>
     <div class="__flex">
       {{#if posts}}
-      {{#each posts}}
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="{{imageSrc this.image.contentType this.image.data}}"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
+        {{#each posts}}
+          <article class="small__post">
+            <div class="small__image__container">
+              <a href="" class="image__link">
+                <figure class="small__image">
+                  <img
+                    src="{{imageSrc this.image.contentType this.image.data}}"
+                    alt=""
+                  />
+                </figure>
+              </a>
+            </div>
 
-        <div class="category__date">
-          <data role="category" class="category"><a href="">{{this.category}}</a></data>
-          <data role="date" class="date">March, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">{{this.title}}</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>{{this.author}}</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      {{/each}}
+            <div class="category__date">
+              <data role="category" class="category"><a
+                  href=""
+                >{{this.category}}</a></data>
+              <data role="date" class="date">March, 2021</data>
+            </div>
+            <div class="article__title">
+              <h2>
+                <a href="">{{this.title}}</a>
+              </h2>
+              <div class="__user">
+                <a href="">
+                  <img src="/images/user.svg" alt="" />
+                  <span>{{this.author}}</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        {{/each}}
       {{/if}}
-      
-      {{!-- <article class="small__post">
+
+      {{! <article class="small__post">
         <div class="small__image__container">
           <a href="" class="image__link">
             <figure class="small__image">
@@ -283,7 +295,7 @@
             </a>
           </div>
         </div>
-      </article> --}}
+      </article> }}
     </div>
   </div>
 </div>

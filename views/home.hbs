@@ -97,9 +97,14 @@
         <ul>
           <li><a href="/" class="nav__links active">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
+          {{#if category}}
+            {{#each category}}
+              <li><a
+                  href="/posts/category?category={{this}}"
+                  class="nav__links"
+                >{{this}}</a></li>
+            {{/each}}
+          {{/if}}
         </ul>
       </nav>
       <div class="menu__btn">
@@ -114,9 +119,14 @@
         <ul>
           <li><a href="/" class="nav__links active">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
+          {{#if category}}
+            {{#each category}}
+              <li><a
+                  href="/posts/category?category={{this}}"
+                  class="nav__links"
+                >{{this}}</a></li>
+            {{/each}}
+          {{/if}}
         </ul>
       </div>
       <form action="" class="nav__search">
@@ -142,11 +152,18 @@
     </div>
     <div class="trending__posts" id="trending-posts">
       <ul>
+        {{#if posts}}
+          {{#each posts}}
+            <li><a
+                href="/posts/{{this.author}}/{{this.link}}"
+              >{{this.title}}</a></li>
+          {{/each}}
+        {{/if}}
+        {{! <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li>
         <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li>
         <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li>
         <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li>
-        <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li>
-        <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li>
+        <li><a href="">Breaking: ASUU to call off strike tomorrow</a></li> }}
       </ul>
     </div>
   </div>

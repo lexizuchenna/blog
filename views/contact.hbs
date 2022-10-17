@@ -97,9 +97,14 @@
         <ul>
           <li><a href="/" class="nav__links">Home</a></li>
           <li><a href="/about" class="nav__links active">About</a></li>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
+          {{#if category}}
+            {{#each category}}
+              <li><a
+                  href="/posts/category?category={{this}}"
+                  class="nav__links"
+                >{{this}}</a></li>
+            {{/each}}
+          {{/if}}
         </ul>
       </nav>
       <div class="menu__btn">
@@ -114,9 +119,14 @@
         <ul>
           <li><a href="/" class="nav__links active">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          <li><a href="/world" class="nav__links">World</a></li>
-          <li><a href="/business" class="nav__links">Business</a></li>
-          <li><a href="/health" class="nav__links">Health</a></li>
+          {{#if category}}
+            {{#each category}}
+              <li><a
+                  href="/posts/category?category={{this}}"
+                  class="nav__links"
+                >{{this}}</a></li>
+            {{/each}}
+          {{/if}}
         </ul>
       </div>
       <form action="" class="nav__search">
@@ -147,27 +157,35 @@
         <br />Emene, Enugu State
         <br />Nigeria
       </address>
-        <p class="__lead">Info</p>
-        <ul>
-            <li><a href="mailto:lextechspec@gmail.com">lextechspec@gmail.com</a></li>
-            <li><a href="tel:+2347043696226">+234 704 369 6226</a></li>
-        </ul>
+      <p class="__lead">Info</p>
+      <ul>
+        <li><a
+            href="mailto:lextechspec@gmail.com"
+          >lextechspec@gmail.com</a></li>
+        <li><a href="tel:+2347043696226">+234 704 369 6226</a></li>
+      </ul>
     </div>
 
     <div class="contact__form">
-        <h2>Send Us A Message</h2>
-        <form action="">
-            <div class="contact__form__group">
-                <input type="text" placeholder="Enter your name">
-            </div>
-            <div class="contact__form__group">
-                <input type="email" placeholder="Enter your email">
-            </div>
-            <div class="contact__form__group">
-                <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-            </div>
-            <button>Send Message</button>
-        </form>
+      <h2>Send Us A Message</h2>
+      <form action="">
+        <div class="contact__form__group">
+          <input type="text" placeholder="Enter your name" />
+        </div>
+        <div class="contact__form__group">
+          <input type="email" placeholder="Enter your email" />
+        </div>
+        <div class="contact__form__group">
+          <textarea
+            name="message"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Your Message"
+          ></textarea>
+        </div>
+        <button>Send Message</button>
+      </form>
     </div>
   </div>
 </main>

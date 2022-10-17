@@ -129,6 +129,7 @@ nav ul li {
   font-weight: 600;
   transition: opacity 200ms ease;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .nav__links:hover {

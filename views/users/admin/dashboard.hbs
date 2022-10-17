@@ -29,7 +29,7 @@
       <div class="mobile__nav _closed" id="mobile-nav">
         <ul>
           <li><a
-              href="/users/admin"
+              href="/users/admin/dashboard"
               class="nav__links active"
             >Dashboard</a></li>
           <li><a href="/users/admin/register-user" class="nav__links">Register
@@ -113,14 +113,14 @@
         </tr>
         {{#if posts}}
           {{#each posts}}
-            <form action="">
+            <form action="" class="form">
+              <tr>
               <input
                 type="text"
                 value="{{this._id}}"
                 name="id"
                 style="display: none;"
               />
-              <tr>
                 <td><a href="/posts/{{this.author}}/{{this.link}}" class="action visit">Click to view</a></td>
                 <td><a href="#" class="action visit">{{this.author}}</a></td>
                 <td>{{this.title}}</td>
@@ -215,4 +215,5 @@
 
 <script>
   document.title = 'CodeBlog | Admin';
+  console.log(document.getElementsByClassName('form'))
 </script>
