@@ -121,9 +121,10 @@
                 style="display: none;"
               />
               <tr>
-                <td><a href="#" class="action visit">Click to view</a></td>
-                <td><a href="#" class="action visit">{{this.creator}}</a></td>
+                <td><a href="/posts/{{this.author}}/{{this.link}}" class="action visit">Click to view</a></td>
+                <td><a href="#" class="action visit">{{this.author}}</a></td>
                 <td>{{this.title}}</td>
+                {{!-- <td><img src="{{imageSrc this.image.contentType this.image.data}}" alt=""></td> --}}
                 <td>
                   <a
                     href="/users/admin/edit/{{this._id}}"

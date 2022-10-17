@@ -2,23 +2,27 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
+
 const {
   viewLogin,
-
+  
   viewAdmin,
   viewRegisterUser,
   viewCreateAdminPost,
   viewAdminSetting,
-
+  
   viewWriter,
   viewCreateWriterPost,
   viewWriterSetting,
   logoutUser,
   registerUser,
+  adminPost,
 } = require("../controllers/user");
 
 // Middleware
 const { isLoggedIn, validate } = require("../middlewares/auth");
+const upload = require("../middlewares/multer");
+
 
 router.get("/login", viewLogin);
 
@@ -30,14 +34,13 @@ router.post(
     failureRedirect: "/users/login",
   }),
   function (req, res) {
-    console.log(req.user);
-    if (req.user.role === "admin") {
-      return res.redirect("/users/admin/dashboard");
+    if (req.user.role !== "admin") {
+      console.log(req.user);
+      console.log(req.isAuthenticated());
+      return res.status(301).redirect("/users/user/dashboard");
     }
 
-    if (req.user.role === "writer") {
-      return res.redirect("/users/user/dashboard");
-    }
+    return res.status(301).redirect("/users/admin/dashboard");
   }
 );
 
@@ -55,7 +58,7 @@ router.get("/admin/create", isLoggedIn, viewCreateAdminPost);
 router.get("/admin/setting", isLoggedIn, viewAdminSetting);
 
 router.post("/admin/register-user", isLoggedIn, validate, registerUser);
-router.post("/admin/create", isLoggedIn);
+router.post("/admin/create", isLoggedIn, upload.single("image"), adminPost);
 
 /*
     ----------

@@ -22,7 +22,7 @@ connectDB();
 app.use(express.urlencoded({ limit: "30mb", extended: false }));
 
 // Handlebars Helpers
-//const {} = require("./middlewares/hbsHelper");
+const {imageSrc, removeRaw} = require("./middlewares/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -30,7 +30,7 @@ app.engine(
   engine({
     defaultLayout: "main",
     extname: "hbs",
-    //helpers: {},
+    helpers: {imageSrc, removeRaw},
   })
 );
 app.set("view engine", ".hbs");

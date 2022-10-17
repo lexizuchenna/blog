@@ -1,4 +1,7 @@
 const bcrypt = require("bcryptjs");
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 
 const Users = require("../models/User");
 const Posts = require("../models/Post");
@@ -9,6 +12,8 @@ const viewLogin = async (req, res) => {
     errors: req.flash("errors"),
     success: req.flash("success"),
   });
+
+  console.log(req.isAuthenticated());
 };
 
 const logoutUser = async (req, res, next) => {
@@ -40,6 +45,7 @@ const viewRegisterUser = async (req, res) => {
   });
 };
 
+// Register User Handle
 const registerUser = async (req, res) => {
   let username = await Users.findOne({
     username: req.body.username.toLowerCase(),
@@ -52,7 +58,7 @@ const registerUser = async (req, res) => {
 
   if (username) {
     err.push({ msg: "Username already exists" });
-    console.log(err)
+    console.log(err);
     return res.status(400).render("users/admin/register-user", { err });
   }
 
@@ -66,12 +72,11 @@ const registerUser = async (req, res) => {
   req.body.password = hashedPwd;
   req.body.username = req.body.username.toLowerCase();
   req.body.email = req.body.email.toLowerCase();
-  req.body.role = 'writer'
+  req.body.role = "writer";
 
   const newUser = await Users.create(req.body);
 
   newUser.save();
-  succ.push({ msg: "User Created" });
   req.flash("success", "User Created");
 
   return res.status(201).redirect("/users/admin/register-user");
@@ -83,6 +88,32 @@ const viewCreateAdminPost = async (req, res) => {
     errors: req.flash("errors"),
     success: req.flash("success"),
   });
+};
+
+// Create a Post in Admin
+const adminPost = async (req, res) => {
+  console.log(req?.file);
+  let text = req.body.title.replace(/[^a-zA-Z0-9- ]/g, "");
+  let link = text.replace(/ /g, "-").toLowerCase();
+
+  req.body.author = req.user.username;
+  req.body.link = link;
+  req.body.image = {
+    data: fs.readFileSync(
+      path.join(__dirname, "../public/my-images/" + req.file.filename)
+    ),
+    contentType: req.file.mimetype,
+  };
+  let image = req.body.image;
+
+  //console.log(path.join(path.dirname(require.main.filename), image))
+
+  console.log(link);
+
+  const newPost = await Posts.create(req.body);
+  newPost.save();
+
+  res.redirect("/users/admin/create");
 };
 
 // View Admin Setting
@@ -125,6 +156,7 @@ module.exports = {
   viewRegisterUser,
   registerUser,
   viewCreateAdminPost,
+  adminPost,
   viewAdminSetting,
 
   viewWriter,

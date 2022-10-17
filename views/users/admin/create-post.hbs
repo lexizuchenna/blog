@@ -40,7 +40,10 @@
       <div class="user__actions">
         <div class="__flex">
           <ul>
-            <li><a href="/users/admin/setting" class="nav__links active">Admin</a></li>
+            <li><a
+                href="/users/admin/setting"
+                class="nav__links active"
+              >Admin</a></li>
             <li><a href="/users/logout" class="nav__links">Logout</a></li>
           </ul>
         </div>
@@ -53,7 +56,11 @@
   <div class="__container __flex">
     <h2 class="post__title">Post An Article</h2>
     <div class="contact__form">
-      <form action="">
+      <form
+        action="/users/admin/create"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <div class="contact__form__group">
           <input type="text" placeholder="Enter Title" name="title" />
         </div>
@@ -67,14 +74,14 @@
           <input
             class="custom__file"
             type="file"
-            accept="images/png, image/jpg, image/jpeg"
+            accept="image/png, image/jpg, image/jpeg"
             name="image"
           />
         </div>
         <div class="contact__form__group">
           <textarea
             id="post-body"
-            name="message"
+            name="post"
             id=""
             cols="30"
             rows="10"

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const PostSchema = mongoose.Schema(
   {
     author: {
@@ -21,8 +22,12 @@ const PostSchema = mongoose.Schema(
     },
     link: {
       type: String,
-      required: true,
-    }
+      //required: true,
+    },
+    image: {
+      data: Buffer,
+      contentType: String,
+    },
   },
   {
     timestamps: true,

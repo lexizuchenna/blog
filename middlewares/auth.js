@@ -35,7 +35,7 @@ const validate = [
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .render("users/admin/register-user", { errors: errors.array() });
+        .render("users/admin/register-user", { err: errors.array() });
     }
 
     next();

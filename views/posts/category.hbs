@@ -138,15 +138,17 @@
 <div class="inline__posts">
   <div class="__container">
     <div class="section__heading">
-      <h3>Business</h3>
+      <h3>{{category}}</h3>
     </div>
     <div class="__flex">
+      {{#if posts}}
+      {{#each posts}}
       <article class="small__post">
         <div class="small__image__container">
           <a href="" class="image__link">
             <figure class="small__image">
               <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1c62fad35eb7eeb910fc3_blog-4.jpg"
+                src="{{imageSrc this.image.contentType this.image.data}}"
                 alt=""
               />
             </figure>
@@ -154,23 +156,25 @@
         </div>
 
         <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
+          <data role="category" class="category"><a href="">{{this.category}}</a></data>
           <data role="date" class="date">March, 2021</data>
         </div>
         <div class="article__title">
           <h2>
-            <a href="">Mayors agree, Congress should invest in affordable
-              housing</a>
+            <a href="">{{this.title}}</a>
           </h2>
           <div class="__user">
             <a href="">
               <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
+              <span>{{this.author}}</span>
             </a>
           </div>
         </div>
       </article>
-      <article class="small__post">
+      {{/each}}
+      {{/if}}
+      
+      {{!-- <article class="small__post">
         <div class="small__image__container">
           <a href="" class="image__link">
             <figure class="small__image">
@@ -279,7 +283,7 @@
             </a>
           </div>
         </div>
-      </article>
+      </article> --}}
     </div>
   </div>
 </div>
