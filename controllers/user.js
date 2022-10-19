@@ -62,7 +62,7 @@ const createPost = async (req, res) => {
   if (image) {
     req.body.image = {
       data: fs.readFileSync(
-        path.join(__dirname, "../public/my-images/" + image.filename)
+        path.join(__dirname, "../public/uploads/" + image.filename)
       ),
       contentType: image.mimetype,
     };
@@ -111,7 +111,7 @@ const editPost = async (req, res) => {
   if (image) {
     req.body.image = {
       data: fs.readFileSync(
-        path.join(__dirname, "../public/my-images/" + image.filename)
+        path.join(__dirname, "../public/uploads/" + image.filename)
       ),
       contentType: image.mimetype,
     };
