@@ -1,6 +1,12 @@
 let box = document.getElementById("trending-posts");
 var container = document.getElementById("trending-box");
 
+let boxWidth = window
+  .getComputedStyle(box)
+  .getPropertyValue("width")
+  .replace("px", "");
+
+
 // Moving Headlines
 const move = (element, direction, distance = 20) => {
   var topOrLeft = direction == "left" || direction == "right" ? "left" : "top";
@@ -28,4 +34,4 @@ const move = (element, direction, distance = 20) => {
   var movingFrames = setInterval(moveAFrame, 20);
 };
 
-move(box, "left", 1700);
+move(box, "left", parseInt(boxWidth));

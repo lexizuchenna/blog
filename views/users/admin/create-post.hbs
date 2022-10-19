@@ -52,12 +52,14 @@
   </div>
 </header>
 
+{{>_toast-header}}
+
 <main class="__post __contact">
   <div class="__container __flex">
     <h2 class="post__title">Post An Article</h2>
     <div class="contact__form">
       <form
-        action="/users/admin/create"
+        action="/users/create-post"
         method="POST"
         enctype="multipart/form-data"
       >
@@ -65,10 +67,7 @@
           <input type="text" placeholder="Enter Title" name="title" />
         </div>
         <div class="contact__form__group">
-          <select name="category" id="">
-            <option value="health">Health</option>
-            <option value="tech">Tech</option>
-          </select>
+          <input type="text" placeholder="Enter Category" name="category" />
         </div>
         <div class="contact__form__group">
           <input
@@ -94,6 +93,8 @@
 </main>
 
 {{>_footer}}
+
+{{>_toast-footer}}
 
 <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
 <script>

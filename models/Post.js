@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 
-
 const PostSchema = mongoose.Schema(
   {
     author: {
       type: String,
       required: true,
-      default: "codeblog",
+    },
+    creator: {
+      type: mongoose.SchemaTypes.ObjectId,
+      required: true,
+      ref: "user",
     },
     title: {
       type: String,

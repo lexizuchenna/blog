@@ -543,9 +543,7 @@ footer nav ul li {
 }
 
 .custom__file::before {
-  content: 'Select an image';
-  
-  
+  content: "Select an image";
 }
 
 .contact__form__group textarea {
@@ -601,7 +599,14 @@ footer nav ul li {
   padding: 20px 40px;
 }
 
-.post__body p {
+.post__body p,
+.post__body h1,
+.post__body h2,
+.post__body h3,
+.post__body h4,
+.post__body h5,
+.post__body h6,
+.post__body blockquote {
   margin-bottom: 10px;
 }
 

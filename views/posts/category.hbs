@@ -97,14 +97,18 @@
         <ul>
           <li><a href="/" class="nav__links">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          {{#if category}}
-            {{#each category}}
-              <li><a
-                  href="/posts/category?category={{this}}"
-                  class="nav__links"
-                >{{this}}</a></li>
-            {{/each}}
-          {{/if}}
+          <li><a
+              href="/posts/category?category=tech"
+              class="nav__links"
+            >Tech</a></li>
+          <li><a
+              href="/posts/category?category=business"
+              class="nav__links"
+            >Business</a></li>
+          <li><a
+              href="/posts/category?category=health"
+              class="nav__links"
+            >Health</a></li>
         </ul>
       </nav>
       <div class="menu__btn">
@@ -155,15 +159,15 @@
       <h3 id="category">{{category}}</h3>
     </div>
     <div class="__flex">
-      {{#if posts}}
-        {{#each posts}}
+      {{#if categoryPosts}}
+        {{#each categoryPosts}}
           <article class="small__post">
             <div class="small__image__container">
-              <a href="" class="image__link">
+              <a href="/posts/{{this.author}}/{{this.link}}" class="image__link">
                 <figure class="small__image">
                   <img
                     src="{{imageSrc this.image.contentType this.image.data}}"
-                    alt=""
+                    alt="{{this.title}}"
                   />
                 </figure>
               </a>
@@ -171,16 +175,16 @@
 
             <div class="category__date">
               <data role="category" class="category"><a
-                  href=""
+                  href="/posts/category?category={{post.category}}"
                 >{{this.category}}</a></data>
-              <data role="date" class="date">March, 2021</data>
+              <data role="date" class="date">{{formatDate this.createdAt}}</data>
             </div>
             <div class="article__title">
               <h2>
-                <a href="">{{this.title}}</a>
+                <a href="/posts/{{this.author}}/{{this.link}}">{{this.title}}</a>
               </h2>
               <div class="__user">
-                <a href="">
+                <a href="href="/posts/{{this.author}}"">
                   <img src="/images/user.svg" alt="" />
                   <span>{{this.author}}</span>
                 </a>

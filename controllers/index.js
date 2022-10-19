@@ -1,7 +1,10 @@
 const Posts = require("../models/Post");
 
 const viewHome = async (req, res) => {
-  const posts = await Posts.find().lean();
+  const posts = await Posts.find().lean().sort([['createdAt', -1]]);
+  const Business = posts.filter((post) => post.category.toLowerCase() === "business");
+
+  const leftSide = posts.slice(0, 3)
   const data = posts.map((post) => {
     return post.category;
   });
@@ -15,7 +18,9 @@ const viewHome = async (req, res) => {
     user = req.user.role === "admin" ? "admin" : "user";
   }
 
-  return res.status(200).render("home", { posts, categories, isAuth, user });
+  return res
+    .status(200)
+    .render("home", { posts, categories, isAuth, user, Business, leftSide });
 };
 const viewAbout = async (req, res) => {
   const posts = await Posts.find().lean();
@@ -31,7 +36,7 @@ const viewAbout = async (req, res) => {
   if (isAuth) {
     user = req.user.role === "admin" ? "admin" : "user";
   }
-  return res.status(200).render("about", {categories, isAuth, user});
+  return res.status(200).render("about", { categories, isAuth, user });
 };
 const viewContact = async (req, res) => {
   const posts = await Posts.find().lean();
@@ -47,7 +52,7 @@ const viewContact = async (req, res) => {
   if (isAuth) {
     user = req.user.role === "admin" ? "admin" : "user";
   }
-  return res.status(200).render("contact", {categories, isAuth, user});
+  return res.status(200).render("contact", { categories, isAuth, user });
 };
 
 module.exports = {

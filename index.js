@@ -20,9 +20,10 @@ connectDB();
 
 // Body Parser
 app.use(express.urlencoded({ limit: "30mb", extended: false }));
+app.use(express.json({extended: true, limit: '30mb'}))
 
 // Handlebars Helpers
-const {imageSrc, removeRaw} = require("./middlewares/hbsHelper");
+const {imageSrc, formatDate} = require("./middlewares/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -30,7 +31,7 @@ app.engine(
   engine({
     defaultLayout: "main",
     extname: "hbs",
-    helpers: {imageSrc, removeRaw},
+    helpers: {imageSrc, formatDate},
   })
 );
 app.set("view engine", ".hbs");

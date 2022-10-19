@@ -42,9 +42,11 @@
   </div>
 </header>
 
+{{> _toast-header}}
+
 <div class="__greeting">
   <div class="__container">
-    <h2>Hello User, Welcome to CodeBlog, Happy writing</h2>
+    <h2>Hello, Welcome to CodeBlog, Happy writing</h2>
   </div>
 </div>
 
@@ -59,87 +61,55 @@
           <th>Action</th>
           <th>Action</th>
         </tr>
-        <tr>
-          <td><a href="#" class="action visit">Click to view</a></td>
-          <td>What is Love</td>
-          <td><a href="#" class="action edit">Edit</a></td>
-          <td><a href="#" class="action delete">Delete</a></td>
-        </tr>
-        <tr>
-          <td><a href="#" class="action visit">Click to view</a></td>
-          <td>What is Love</td>
-          <td><a href="#" class="action edit">Edit</a></td>
-          <td><a href="#" class="action delete">Delete</a></td>
-        </tr>
+        {{#if userPost}}
+          {{#each userPost}}
+              <tr>
+                <td><a href="/posts/{{this.author}}/{{this.link}}" class="action visit">Click to view</a></td>
+                <td>{{this.title}}</td>
+                <td>
+                  <a
+                    href="/users/user/edit/{{this._id}}"
+                    class="action edit"
+                  >Edit</a>
+                </td>
+                <td>
+                  <form action="/users/delete" class="delete" method="POST">
+                    <input
+                      type="text"
+                      value="{{this._id}}"
+                      name="id"
+                      style="display: none;"
+                    />
+                    <a href="#" class="action delete">Delete</a>
+                  </form>
+                </td>
+              </tr>
+          {{/each}}
+        {{else}}
+          <tr>
+            <td>No data</td>
+            <td>No data</td>
+            <td><a href="#" class="action edit">No data</a></td>
+            <td><a href="#" class="action delete">No data</a></td>
+          </tr>
+        {{/if}}
       </table>
     </div>
   </div>
 </div>
 
-<footer>
-  <div class="__container __flex">
-    <div class="footer__logo">
-      <div>
-        <a href="index.html" aria-current="page" class="logo">
-          <img
-            src="/images/code_logo.png"
-            loading="lazy"
-            width="130"
-            sizes="(max-width: 479px) 31vw, (max-width: 767px) 17vw, (max-width: 991px) 15vw, 130px"
-            alt="code"
-          />
-        </a>
-      </div>
-    </div>
-    <div class="footer__categories">
-      <div class="footer__head">
-        <h4>Categories</h4>
-      </div>
-      <div class="footer__nav">
-        <nav class="__flex">
-          <ul>
-            <li><a href="/world" class="nav__links">World</a></li>
-            <li><a href="/business" class="nav__links">Business</a></li>
-            <li><a href="/health" class="nav__links">Health</a></li>
-            <li><a href="/science" class="nav__links">Science</a></li>
-            <li><a href="/food" class="nav__links">Food</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="footer__links">
-      <div class="footer__head">
-        <h4>Useful Links</h4>
-      </div>
-      <div class="footer__nav">
-        <nav class="__flex">
-          <ul>
-            <li><a href="/" class="nav__links">Home</a></li>
-            <li><a href="/about" class="nav__links">About</a></li>
-            <li><a href="/contact" class="nav__links">Contact</a></li>
-            <li><a href="/users/login" class="nav__links">Login</a></li>
-            <li>
-              <a href="/terms-and-conditions" class="nav__links">Terms</a>
-            </li>
-            <li><a href="/privacy" class="nav__links">Privacy Policy</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="footer__form">
-      <div class="footer__head">
-        <h4>Subscribe</h4>
-      </div>
-      <form action="">
-        <div class="input__button">
-          <input type="email" name="email" placeholder="Enter Email" />
-          <button>Subscribe</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</footer>
+{{> _footer}}
+{{> _toast-footer}}
 
 <script>
   document.title = 'CodeBlog | Dashboard';
+
+  const forms = document.getElementsByClassName('delete');
+  for(i = 0; i < forms.length; i++) {
+    forms[i].addEventListener('click', (e) => {
+      if(confirm('Confirm Delete')) {
+        e.target.parentNode.submit();
+      }
+    })
+  }
 </script>

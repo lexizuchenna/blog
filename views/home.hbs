@@ -174,88 +174,43 @@
       <div class="section__heading">
         <h3>Latest News</h3>
       </div>
+      {{#if leftSide}}
+      {{#each leftSide}}
       <article class="small__post">
         <div class="small__image__container">
-          <a href="" class="image__link">
+          <a href="/posts/{{this.author}}/{{this.link}}" class="image__link">
             <figure class="small__image">
               <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1c62fad35eb7eeb910fc3_blog-4.jpg"
-                alt=""
+                src="{{imageSrc this.image.contentType this.image.data}}"
+                alt="{{this.title}}"
               />
             </figure>
           </a>
         </div>
 
         <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">March, 2021</data>
+          <data role="category" class="category">
+            <a href="/posts/category?category={{this.category}}">
+              {{this.category}}
+            </a>
+          </data>
+          <data role="date" class="date">{{formatDate this.createdAt}}</data>
         </div>
+
         <div class="article__title">
-          <h2>
-            <a href="">Mayors agree, Congress should invest in affordable
-              housing</a>
+           <h2>
+            <a href="/posts/{{this.author}}/{{this.link}}">{{this.title}}</a>
           </h2>
           <div class="__user">
-            <a href="">
+            <a href="/posts/{{this.author}}">
               <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
+              <span>{{this.author}}</span>
             </a>
           </div>
         </div>
       </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1fb889b01c6359edf770a_blog-25.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">World</a></data>
-          <data role="date" class="date">October, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2><a href="">Not who has much is rich, but who gives much</a></h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">January, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Report: $47 minimum wage bill would benefit 40.7 million
-              workers</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
+      {{/each}}
+      {{/if}}
     </aside>
     <div class="popular__news __flex">
       <div class="section__heading">
@@ -297,59 +252,31 @@
       <div class="section__heading">
         <h3>Business</h3>
       </div>
+      {{#if Business}}
+      {{#each Business}}
       <article class="text__post">
         <div class="article__title">
           <h2>
-            <a href="">Democracy’s chief executive: Interpreting the
-              constitution and defining the future</a>
+            <a href="/posts/{{this.author}}/{{this.link}}">{{this.title}}</a>
           </h2>
           <div class="__user">
-            <a href="">
+            <a href="/posts/{{this.author}}">
               <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
+              <span>{{this.author}}</span>
             </a>
           </div>
         </div>
         <div class="category__date">
-          <data role="category" class="category"><a href="">Business</a></data>
-          <data role="date" class="date">June, 2021</data>
-        </div>
-      </article>
-      <article class="text__post">
-        <div class="article__title">
-          <h2>
-            <a href="">Mayors agree, Congress should invest in affordable
-              housing</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
+          <data role="category" class="category">
+            <a href="/posts/category?category={{this.category}}">
+              {{this.category}}
             </a>
-          </div>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Business</a></data>
-          <data role="date" class="date">August, 2021</data>
+          </data>
+          <data role="date" class="date">{{formatDate this.createdAt}}</data>
         </div>
       </article>
-      <article class="text__post">
-        <div class="article__title">
-          <h2>
-            <a href="">Successful entrepreneurs recognize when to move on</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Business</a></data>
-          <data role="date" class="date">December, 2021</data>
-        </div>
-      </article>
+      {{/each}}
+      {{/if}}
     </aside>
   </div>
 </div>

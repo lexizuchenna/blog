@@ -157,7 +157,7 @@
         <data role="category" class="category"><a
             href="/posts/category?category={{post.category}}"
           >{{post.category}}</a></data>
-        <data role="date" class="date">December, 2021</data>
+        <data role="date" class="date">{{formatDate post.createdAt}}</data>
       </div>
       <div class="__user">
         <a href="/posts/{{post.author}}">
