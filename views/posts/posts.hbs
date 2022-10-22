@@ -105,6 +105,7 @@
     {{/each}}
     {{/if}}
   </div>
+  {{#if pagination}}
   <div class="__container __bottom_line">
     <div class="pagination">
       {{#paginate pagination type="previous"}}
@@ -118,6 +119,7 @@
       {{/paginate}}
     </div>
   </div>
+  {{/if}}
 </main>
 
 {{>_footer}}

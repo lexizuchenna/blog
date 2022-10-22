@@ -112,8 +112,42 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+const getPostBySearch = async (req, res) => {
+  const { q } = req.query;
+
+  const title = new RegExp(q, "i");
+
+  const fetchedPosts = await Posts.find({ $or: [{ title }] }).lean();
+
+  fetchedPosts.map((post) => {
+    console.log(post.title);
+  });
+
+  const posts = await Posts.find().lean();
+  const data = posts.map((post) => {
+    return post.category;
+  });
+
+  const categories = [...new Set(data)];
+
+  const isAuth = req.isAuthenticated();
+  let user;
+
+  if (isAuth) {
+    user = req.user.role === "admin" ? "admin" : "user";
+  }
+
+  return res.status(200).render("posts/posts", {
+    fetchedPosts,
+    categories,
+    isAuth,
+    user,
+  });
+};
+
 module.exports = {
   getSinglePost,
   getPostsByCategory,
   getAllPosts,
+  getPostBySearch,
 };
