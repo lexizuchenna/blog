@@ -1,97 +1,6 @@
 <header class="">
   <div class="__container">
-    <div class="__flex top__links __bottom_line">
-      <div>
-        <a href="index.html" aria-current="page" class="logo">
-          <img
-            src="/images/code_logo.png"
-            loading="lazy"
-            width="130"
-            sizes="(max-width: 479px) 31vw, (max-width: 767px) 17vw, (max-width: 991px) 15vw, 130px"
-            alt="code"
-          />
-        </a>
-      </div>
-      <div class="social__logo__wrapper">
-        <ul class="__flex">
-          <li>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/instagram.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.twitter.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/twitter.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.medium.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/medium.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/youtube.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/facebook.png"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    {{>_top-links}}
     <div class="__flex bottom__links __bottom_line">
       <nav class="__flex">
         <ul>
@@ -181,10 +90,10 @@
             </div>
             <div class="article__title">
               <h2>
-                <a href="/posts/{{this.author}}/{{this.link}}">{{this.title}}</a>
+                <a href="/posts/{{this.username}}/{{this.link}}">{{this.title}}</a>
               </h2>
               <div class="__user">
-                <a href="href="/posts/{{this.author}}"">
+                <a href="href=/posts/{{this.username}}">
                   <img src="/images/user.svg" alt="" />
                   <span>{{this.author}}</span>
                 </a>

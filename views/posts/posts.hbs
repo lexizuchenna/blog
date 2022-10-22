@@ -5,7 +5,7 @@
       <nav class="__flex">
         <ul>
           <li><a href="/" class="nav__links">Home</a></li>
-          <li><a href="/about" class="nav__links active">About</a></li>
+          <li><a href="/about" class="nav__links">About</a></li>
           <li><a
               href="/posts/category?category=tech"
               class="nav__links"
@@ -62,37 +62,66 @@
   </div>
 </header>
 
-{{>_toast-header}}
-
-<main class="__post __contact">
-  <div class="__container __flex">
-    <h2 class="post__title">Login to your account</h2>
-    <div class="contact__form">
-      <form action="/users/login" method="POST">
-        <div class="contact__form__group">
-          <input
-            type="text"
-            placeholder="Enter your username"
-            name="username"
-          />
+<main>
+  <div class="__container __bottom_line">
+    {{#if fetchedPosts}}
+    {{#each fetchedPosts}}
+    <article class="medium__post __flex">
+      <div class="medium__image__container">
+        <a href="/posts/{{this.username}}/{{this.link}}" class="image__link">
+          <figure class="medium__image">
+            <img
+              src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
+              alt=""
+            />
+          </figure>
+        </a>
+      </div>
+      <div class="medium__text__container">
+        <div class="category__date">
+          <data role="category" class="category">
+            <a
+              href="/posts/category?category={{this.category}}"
+            >{{this.category}}</a>
+          </data>
+          <data role="date" class="date">{{formatDate this.createdAt}}</data>
         </div>
-        <div class="contact__form__group">
-          <input
-            type="password"
-            placeholder="Enter your password"
-            name="password"
-          />
+        <div class="article__title">
+          <h2>
+            <a href="/posts/{{this.username}}/{{this.link}}">{{this.title}}</a>
+          </h2>
+          <div class="__short_words">
+            {{{truncate this.post 200}}}
+          </div>
+          <div class="__user">
+            <a href="href=/posts/{{this.username}}">
+              <img src="/images/user.svg" alt="{{this.title}}" />
+              <span>{{this.author}}</span>
+            </a>
+          </div>
         </div>
-        <button type="submit">Login</button>
-      </form>
+      </div>
+    </article>
+    {{/each}}
+    {{/if}}
+  </div>
+  <div class="__container __bottom_line">
+    <div class="pagination">
+      {{#paginate pagination type="previous"}}
+        <a {{#if disabled}}class="disabled"{{/if}} href="?p={{n}}">&laquo;</a>
+      {{/paginate}}
+      {{#paginate pagination type="middle" limit="5"}}
+        <a {{#if active}}class="active"{{/if}} href="?p={{n}}">{{n}}</a>
+      {{/paginate}}
+      {{#paginate pagination type="next"}}
+        <a {{#if disabled}}class="disabled"{{/if}} href="?p={{n}}">&raquo;</a>
+      {{/paginate}}
     </div>
   </div>
 </main>
 
 {{>_footer}}
 
-{{>_toast-footer}}
-
 <script>
-  document.title = 'CodeBlog | Login';
+  document.title = `CodeBlog | Posts`;
 </script>

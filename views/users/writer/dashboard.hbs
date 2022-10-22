@@ -64,7 +64,7 @@
         {{#if userPost}}
           {{#each userPost}}
               <tr>
-                <td><a href="/posts/{{this.author}}/{{this.link}}" class="action visit">Click to view</a></td>
+                <td><a href="/posts/{{this.username}}/{{this.link}}" class="action visit">Click to view</a></td>
                 <td>{{this.title}}</td>
                 <td>
                   <a
@@ -73,14 +73,14 @@
                   >Edit</a>
                 </td>
                 <td>
-                  <form action="/users/delete" class="delete" method="POST">
+                  <form action="/users/delete-post" class="remove" method="POST">
                     <input
                       type="text"
                       value="{{this._id}}"
                       name="id"
                       style="display: none;"
                     />
-                    <a href="#" class="action delete">Delete</a>
+                    <a href="javascript:null" class="action delete">Delete</a>
                   </form>
                 </td>
               </tr>
@@ -89,8 +89,8 @@
           <tr>
             <td>No data</td>
             <td>No data</td>
-            <td><a href="#" class="action edit">No data</a></td>
-            <td><a href="#" class="action delete">No data</a></td>
+            <td><a href="javascript:null" class="action edit">No data</a></td>
+            <td><a href="javascript:null" class="action delete">No data</a></td>
           </tr>
         {{/if}}
       </table>
@@ -103,13 +103,5 @@
 
 <script>
   document.title = 'CodeBlog | Dashboard';
-
-  const forms = document.getElementsByClassName('delete');
-  for(i = 0; i < forms.length; i++) {
-    forms[i].addEventListener('click', (e) => {
-      if(confirm('Confirm Delete')) {
-        e.target.parentNode.submit();
-      }
-    })
-  }
 </script>
+<script src="/js/dashboard.js"></script>

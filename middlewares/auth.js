@@ -2,6 +2,7 @@ const { check, validationResult } = require("express-validator");
 
 const isLoggedIn = async (req, res, next) => {
   if (!req.isAuthenticated()) {
+    req.flash('errors', 'Session Expired')
     return res.redirect("/users/login");
   }
 
@@ -15,6 +16,7 @@ const isAdmin = async (req, res, next) => {
 
   next();
 };
+
 const isUser = async (req, res, next) => {
   if (req.isAuthenticated() && req?.user?.role === "writer") {
     return res.redirect("/users/user/dashboard");

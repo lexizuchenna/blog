@@ -1,114 +1,29 @@
 <header class="">
   <div class="__container">
-    <div class="__flex top__links __bottom_line">
-      <div>
-        <a href="/" aria-current="page" class="logo">
-          <img
-            src="/images/code_logo.png"
-            loading="lazy"
-            width="130"
-            sizes="(max-width: 479px) 31vw, (max-width: 767px) 17vw, (max-width: 991px) 15vw, 130px"
-            alt="code"
-          />
-        </a>
-      </div>
-      <div class="social__logo__wrapper">
-        <ul class="__flex">
-          <li>
-            <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/instagram.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.twitter.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/twitter.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.medium.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/medium.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/youtube.svg"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              class="social__icon"
-            >
-              <img
-                src="/images/facebook.png"
-                loading="lazy"
-                width="20"
-                alt=""
-                class="social__image"
-              />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    {{>_top-links}}
     <div class="__flex bottom__links __bottom_line">
       <nav class="__flex">
         <ul>
           <li><a href="/" class="nav__links">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          <li><a
+          <li>
+            <a
               href="/posts/category?category=tech"
               class="nav__links"
-            >Tech</a></li>
-          <li><a
+            >Tech</a>
+          </li>
+          <li>
+            <a
               href="/posts/category?category=business"
               class="nav__links"
-            >Business</a></li>
-          <li><a
+            >Business</a>
+          </li>
+          <li>
+            <a
               href="/posts/category?category=health"
               class="nav__links"
-            >Health</a></li>
+            >Health</a>
+          </li>
         </ul>
       </nav>
       <div class="menu__btn">
@@ -123,14 +38,24 @@
         <ul>
           <li><a href="/" class="nav__links active">Home</a></li>
           <li><a href="/about" class="nav__links">About</a></li>
-          {{#if category}}
-            {{#each category}}
-              <li><a
-                  href="/posts/category?category={{this}}"
-                  class="nav__links"
-                >{{this}}</a></li>
-            {{/each}}
-          {{/if}}
+          <li>
+            <a
+              href="/posts/category?category=tech"
+              class="nav__links"
+            >Tech</a>
+          </li>
+          <li>
+            <a
+              href="/posts/category?category=business"
+              class="nav__links"
+            >Business</a>
+          </li>
+          <li>
+            <a
+              href="/posts/category?category=health"
+              class="nav__links"
+            >Health</a>
+          </li>
         </ul>
       </div>
       <form action="" class="nav__search">
@@ -160,14 +85,14 @@
         <data role="date" class="date">{{formatDate post.createdAt}}</data>
       </div>
       <div class="__user">
-        <a href="/posts/{{post.author}}">
+        <a href="/posts/{{post.username}}">
           <img src="/images/user.svg" alt="" />
           <span>{{post.author}}</span>
         </a>
       </div>
     </div>
     <div class="post__image">
-      <img src="{{imageSrc post.image.contentType post.image.data}}" alt="" />
+      <img src="{{imageSrc post.image.contentType post.image.data}}" alt="{{post.title}}" />
     </div>
     <div class="post__body">
       {{{post.post}}}
@@ -181,7 +106,43 @@
       <h3>Related Posts</h3>
     </div>
     <div class="__flex">
+      {{#if relatedPosts}}
+      {{#each relatedPosts}}
       <article class="small__post">
+        <div class="small__image__container">
+          <a href="" class="image__link">
+            <figure class="small__image">
+              <img
+                src="{{imageSrc this.image.contentType this.image.data}}"
+                alt="{{this.title}}"
+              />
+            </figure>
+          </a>
+        </div>
+
+        <div class="category__date">
+          <data role="category" class="category">
+            <a
+              href="/posts/category?category={{this.category}}"
+            >{{this.category}}</a>
+          </data>
+          <data role="date" class="date">{{formatDate this.createdAt}}</data>
+        </div>
+        <div class="article__title">
+           <h2>
+              <a href="/posts/{{this.username}}/{{this.link}}">{{this.title}}</a>
+            </h2>
+          <div class="__user">
+            <a href="href=/posts/{{this.username}}">
+              <img src="/images/user.svg" alt="{{this.title}}" />
+              <span>{{this.author}}</span>
+            </a>
+          </div>
+        </div>
+      </article>
+      {{/each}}
+      {{/if}}
+      {{!-- <article class="small__post">
         <div class="small__image__container">
           <a href="" class="image__link">
             <figure class="small__image">
@@ -209,117 +170,7 @@
             </a>
           </div>
         </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1c62fad35eb7eeb910fc3_blog-4.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">March, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Mayors agree, Congress should invest in affordable
-              housing</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1fb889b01c6359edf770a_blog-25.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">World</a></data>
-          <data role="date" class="date">October, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2><a href="">Not who has much is rich, but who gives much</a></h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">January, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Report: $47 minimum wage bill would benefit 40.7 million
-              workers</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="small__post">
-        <div class="small__image__container">
-          <a href="" class="image__link">
-            <figure class="small__image">
-              <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-                alt=""
-              />
-            </figure>
-          </a>
-        </div>
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">January, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">Report: $47 minimum wage bill would benefit 40.7 million
-              workers</a>
-          </h2>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </article>
+      </article> --}}
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { engine } = require("express-handlebars");
+const paginate = require("handlebars-paginate");
 
 const app = express();
 
@@ -20,10 +21,10 @@ connectDB();
 
 // Body Parser
 app.use(express.urlencoded({ limit: "30mb", extended: false }));
-app.use(express.json({extended: true, limit: '30mb'}))
+app.use(express.json({ extended: true, limit: "30mb" }));
 
 // Handlebars Helpers
-const {imageSrc, formatDate} = require("./middlewares/hbsHelper");
+const { imageSrc, formatDate, truncate } = require("./middlewares/hbsHelper");
 
 // Express-Handlbars Engine
 app.engine(
@@ -31,7 +32,7 @@ app.engine(
   engine({
     defaultLayout: "main",
     extname: "hbs",
-    helpers: {imageSrc, formatDate},
+    helpers: { imageSrc, formatDate, paginate, truncate },
   })
 );
 app.set("view engine", ".hbs");

@@ -1,9 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
+@font-face {
+  font-family: euclidcircularb;
+  src: url("/fonts/euclidcircularb-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: euclidcircularb;
+  src: url("/fonts/euclidcircularb-semibold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Redaction;
+  src: url("/fonts/Redaction-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Redaction;
+  src: url("/fonts/Redaction-Bold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Redaction;
+  src: url("/fonts/Redaction-italic.woff2") format("woff2");
+  font-weight: 400 600 700;
+  font-style: italic;
+}
+
 /* Root Vars */
 :root {
-  --primary-font: Inter, sans-serif;
-  --secondary-font: Redaction, sans-serif;
+  --primary-font: euclidcircularb, sans-serif;
+  --secondary-font: Redaction, serif;
   --business-color: hsla(226, 48.6%, 35.1%, 1);
   --politics-color: hsla(4, 90.37%, 63.33%, 1);
   --gray-color: #6b6b6b;
@@ -58,6 +90,12 @@ article {
   font-family: var(--primary-font);
 }
 
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
+}
+
 /* Color */
 
 .business__color {
@@ -71,7 +109,7 @@ article {
 /* Contextual Ends */
 
 body {
-  font-family: Inter, sans-serif;
+  font-family: var(--primary-font), sans-serif;
 }
 
 a {
@@ -150,8 +188,8 @@ nav ul li {
 }
 
 .nav__search input::placeholder {
-  font-weight: 600;
-  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-family: var(--primary-font);
   color: #000;
 }
 
@@ -390,8 +428,17 @@ main {
   /* border: 1px solid var(--gray-color); */
 }
 
-.medium__text__container p {
-  font-size: 15px;
+.medium__text__container .__short_words {
+  font-size: 15px !important;
+  font-weight: 400;
+  margin: 15px 0;
+}
+
+.__short_words h3,
+.__short_words h2,
+.__short_words h1 {
+  font-size: 15px !important;
+  font-weight: 400;
 }
 
 /* Footer */
@@ -418,7 +465,7 @@ footer nav ul li {
 
 .footer__head h4 {
   font-size: 16px;
-  font-family: var(--secondary-font);
+  font-family: var(--primary-font);
 }
 
 .footer__categories {
@@ -459,6 +506,10 @@ footer nav ul li {
   margin-bottom: 10px;
 }
 
+.footer__form input[type="email"]::placeholder {
+  font-family: var(--primary-font);
+}
+
 .footer__form button {
   position: absolute;
   left: auto;
@@ -471,6 +522,7 @@ footer nav ul li {
   color: #fff;
   font-size: 14px;
   font-weight: 700;
+  font-family: var(--primary-font);
   border: none;
   cursor: pointer;
 }
@@ -619,6 +671,28 @@ footer nav ul li {
 .inline__posts .small__image__container,
 .inline__posts .small__post {
   width: 215px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.pagination a.active {
+  background-color: #333;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
 }
 
 /*  

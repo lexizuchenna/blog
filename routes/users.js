@@ -28,21 +28,25 @@ const {
 } = require("../controllers/user");
 
 // Middleware
-const { isLoggedIn, validate, isUser, isAdmin } = require("../middlewares/auth");
+const {
+  isLoggedIn,
+  validate,
+  isUser,
+  isAdmin,
+} = require("../middlewares/auth");
 const upload = require("../middlewares/multer");
 
 // View Login
-router.get("/login", isUser, viewLogin);
+router.get("/login", isUser, isAdmin, viewLogin);
 
 // Login Handle
 router.post(
   "/login",
-  isUser,
   passport.authenticate("local", {
     failureMessage: true,
     failureRedirect: "/users/login",
   }),
-  function (req, res) {
+  (req, res) => {
     if (req.user.role !== "admin") {
       return res.status(301).redirect("/users/user/dashboard");
     }
@@ -55,7 +59,7 @@ router.get("/logout", logoutUser);
 
 router.post("/create-post", isLoggedIn, upload.single("image"), createPost);
 router.post("/update-post", isLoggedIn, upload.single("image"), editPost);
-router.post("/delete", isLoggedIn, deletePost);
+router.post("/delete-post", isLoggedIn, deletePost);
 router.post("/change-data", isLoggedIn, changeData);
 router.post("/change-password", isLoggedIn, changePassword);
 
@@ -74,7 +78,7 @@ router.get("/admin/setting", isLoggedIn, isUser, viewAdminSetting);
 
 router.post("/admin/register-user", isLoggedIn, isUser, validate, registerUser);
 router.post("/admin/edit-user", isLoggedIn, isUser, editUser);
-router.post("/admin/delete", isLoggedIn, isUser, deleteUser);
+router.post("/admin/delete-user", isLoggedIn, isUser, deleteUser);
 
 /*
     ----------

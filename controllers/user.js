@@ -9,11 +9,9 @@ const Posts = require("../models/Post");
 
 // View Login Page
 const viewLogin = async (req, res) => {
-  let errors;
   if (req?.session?.messages && req?.session?.messages !== []) {
-    req.flash("errors", req?.session?.messages);
-    errors = [req?.session?.messages.pop()];
-    console.log(errors);
+    let lastMessage = req?.session?.messages.pop()
+    req.flash("errors", lastMessage);
   }
 
   const posts = await Posts.find().lean();
@@ -31,6 +29,7 @@ const viewLogin = async (req, res) => {
   }
 
   let success = req.flash("success");
+  let errors = req.flash("errors");
 
   return res.render("users/login", {
     errors,
@@ -77,6 +76,7 @@ const createPost = async (req, res) => {
   let link = text.replace(/ /g, "-").toLowerCase();
 
   req.body.author = req.user.name;
+  req.body.username = req.user.username;
   req.body.link = link;
   req.body.category = category.toLowerCase();
   req.body.creator = req.user.id;
@@ -116,6 +116,8 @@ const editPost = async (req, res) => {
       contentType: image.mimetype,
     };
   }
+
+  //req.body.username = req.user.username;
 
   let updatedPost = await Posts.findByIdAndUpdate(id, req.body, { new: true });
 
