@@ -35,6 +35,10 @@ const PostSchema = mongoose.Schema(
       data: Buffer,
       contentType: String,
     },
+    views: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

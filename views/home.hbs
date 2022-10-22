@@ -61,14 +61,14 @@
 <section class="trending__post">
   <div class="__container" id="trending-box">
     <div class="trending__post__title">
-      <h2>Trending Posts</h2>
+      <h2>Recent Posts</h2>
     </div>
     <div class="trending__posts" id="trending-posts">
       <ul>
-        {{#if posts}}
-          {{#each posts}}
+        {{#if recentPosts}}
+          {{#each recentPosts}}
             <li><a
-                href="/posts/{{this.author}}/{{this.link}}"
+                href="/posts/{{this.username}}/{{this.link}}"
               >{{this.title}}</a></li>
           {{/each}}
         {{/if}}
@@ -87,7 +87,7 @@
       {{#each leftSide}}
       <article class="small__post">
         <div class="small__image__container">
-          <a href="/posts/{{this.author}}/{{this.link}}" class="image__link">
+          <a href="/posts/{{this.username}}/{{this.link}}" class="image__link">
             <figure class="small__image">
               <img
                 src="{{imageSrc this.image.contentType this.image.data}}"
@@ -108,7 +108,7 @@
 
         <div class="article__title">
            <h2>
-            <a href="/posts/{{this.author}}/{{this.link}}">{{this.title}}</a>
+            <a href="/posts/{{this.username}}/{{this.link}}">{{this.title}}</a>
           </h2>
           <div class="__user">
             <a href="/posts/{{this.author}}">
@@ -127,31 +127,32 @@
       </div>
       <article class="large__post">
         <div class="large__image__container">
-          <a href="" class="image__link">
+          <a 
+            href="/posts/{{trendingPost.username}}/{{trendingPost.link}}" class="image__link">
             <figure class="large__image">
               <img
-                src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1c62fad35eb7eeb910fc3_blog-4.jpg"
-                alt=""
+                src="{{imageSrc trendingPost.image.contentType trendingPost.image.data}}"
+                alt="{{this.title}}"
               />
             </figure>
           </a>
         </div>
         <div class="category__date">
-          <data role="category" class="category"><a href="">Politics</a></data>
-          <data role="date" class="date">March, 2021</data>
+          <data role="category" class="category"><a href="/posts/category?category={{trendingPost.category}}">{{trendingPost.category}}</a></data>
+          <data role="date" class="date">{{formatDate trendingPost.createdAt}}</data>
         </div>
         <div class="article__title">
           <h2>
-            <a href="">
-              Democracy’s chief executive: Interpreting the constitution and
-              defining the future</a>
+            <a href="/posts/{{trendingPost.username}}/{{trendingPost.link}}">
+              {{trendingPost.title}}</a>
           </h2>
-          <p>My visual universe is surrealistic, colorful and dark at the same
-            time.</p>
+           <div class="__short_words">
+            {{{truncate trendingPost.post 200}}}
+          </div>
           <div class="__user">
-            <a href="">
+            <a href="/posts/{{trendingPost.username}}">
               <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
+              <span>{{trendingPost.author}}</span>
             </a>
           </div>
         </div>
@@ -192,108 +193,51 @@
 
 <main>
   <div class="__container __bottom_line">
+    {{#if mainPosts}}
+    {{#each mainPosts}}
     <article class="medium__post __flex">
       <div class="medium__image__container">
-        <a href="" class="image__link">
+        <a href="/posts/{{this.username}}/{{this.link}}" class="image__link">
           <figure class="medium__image">
             <img
-              src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-              alt=""
+              src="{{imageSrc this.image.contentType this.image.data}}"
+              alt="{{this.title}}"
             />
           </figure>
         </a>
       </div>
       <div class="medium__text__container">
         <div class="category__date">
-          <data role="category" class="category"><a href="">Business</a></data>
-          <data role="date" class="date">December, 2021</data>
+          <data role="category" class="category">
+            <a
+              href="/posts/category?category={{this.category}}"
+            >{{this.category}}</a>
+          </data>
+          <data role="date" class="date">{{formatDate this.createdAt}}</data>
         </div>
         <div class="article__title">
           <h2>
-            <a href="">ASUU: FG to release N50bn as earned allowances.</a>
+            <a href="/posts/{{this.username}}/{{this.link}}">{{this.title}}</a>
           </h2>
-          <p>
-            The governing council of Federal Universities will take over the
-            payment of earned allowances of lecturers and other university
-            workers in their respective institutions from 2024
-          </p>
+          <div class="__short_words">
+            {{{truncate this.post 200}}}
+          </div>
           <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
+            <a href="href=/posts/{{this.username}}">
+              <img src="/images/user.svg" alt="{{this.title}}" />
+              <span>{{this.author}}</span>
             </a>
           </div>
         </div>
       </div>
     </article>
-    <article class="medium__post __flex">
-      <div class="medium__image__container">
-        <a href="" class="image__link">
-          <figure class="medium__image">
-            <img
-              src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-              alt=""
-            />
-          </figure>
-        </a>
-      </div>
-      <div class="medium__text__container">
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Business</a></data>
-          <data role="date" class="date">December, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">ASUU: FG to release N50bn as earned allowances.</a>
-          </h2>
-          <p>
-            The governing council of Federal Universities will take over the
-            payment of earned allowances of lecturers and other university
-            workers in their respective institutions from 2024
-          </p>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </article>
-    <article class="medium__post __flex">
-      <div class="medium__image__container">
-        <a href="" class="image__link">
-          <figure class="medium__image">
-            <img
-              src="https://assets.website-files.com/61c062a37877bc53f423dcb2/61c1d7e66b25f154d0e3070b_blog-17.jpg"
-              alt=""
-            />
-          </figure>
-        </a>
-      </div>
-      <div class="medium__text__container">
-        <div class="category__date">
-          <data role="category" class="category"><a href="">Business</a></data>
-          <data role="date" class="date">December, 2021</data>
-        </div>
-        <div class="article__title">
-          <h2>
-            <a href="">ASUU: FG to release N50bn as earned allowances.</a>
-          </h2>
-          <p>
-            The governing council of Federal Universities will take over the
-            payment of earned allowances of lecturers and other university
-            workers in their respective institutions from 2024
-          </p>
-          <div class="__user">
-            <a href="">
-              <img src="/images/user.svg" alt="" />
-              <span>Alexander</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </article>
+    {{/each}}
+    {{/if}}
+  </div>
+  <div class="__container __bottom_line">
+    <div class="pagination">
+        <a href="/posts">View All Posts</a>
+    </div>
   </div>
 </main>
 

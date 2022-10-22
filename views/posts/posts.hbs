@@ -111,7 +111,7 @@
         <a {{#if disabled}}class="disabled"{{/if}} href="?p={{n}}">&laquo;</a>
       {{/paginate}}
       {{#paginate pagination type="middle" limit="5"}}
-        <a {{#if active}}class="active"{{/if}} href="?p={{n}}">{{n}}</a>
+        <a {{#if active}}class="active disabled"{{/if}} href="?p={{n}}">{{n}}</a>
       {{/paginate}}
       {{#paginate pagination type="next"}}
         <a {{#if disabled}}class="disabled"{{/if}} href="?p={{n}}">&raquo;</a>

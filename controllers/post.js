@@ -21,6 +21,12 @@ const getSinglePost = async (req, res) => {
     user = req.user.role === "admin" ? "admin" : "user";
   }
 
+  await Posts.findByIdAndUpdate(
+    post._id,
+    { views: parseInt(post.views) + 1 },
+    { new: true }
+  );
+
   const relatedPostsData = await Posts.find({ category: post.category }).lean();
   let relatedPosts = relatedPostsData
     .filter((singlePost) => singlePost.title !== post.title)
@@ -94,15 +100,13 @@ const getAllPosts = async (req, res) => {
       user = req.user.role === "admin" ? "admin" : "user";
     }
 
-    return res
-      .status(200)
-      .render("posts/posts", {
-        fetchedPosts,
-        pagination,
-        categories,
-        isAuth,
-        user,
-      });
+    return res.status(200).render("posts/posts", {
+      fetchedPosts,
+      pagination,
+      categories,
+      isAuth,
+      user,
+    });
   } catch (error) {
     console.log(error);
   }

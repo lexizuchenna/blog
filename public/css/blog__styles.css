@@ -428,7 +428,7 @@ main {
   /* border: 1px solid var(--gray-color); */
 }
 
-.medium__text__container .__short_words {
+.__short_words {
   font-size: 15px !important;
   font-weight: 400;
   margin: 15px 0;

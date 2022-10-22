@@ -208,6 +208,7 @@ const changePassword = async (req, res) => {
 const logoutUser = async (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
+    req.flash('success', 'Session Terminated')
     return res.redirect("/users/login");
   });
 };
@@ -546,6 +547,8 @@ const viewWriter = async (req, res) => {
     user = req.user.role === "admin" ? "admin" : "user";
   }
 
+  let username = req.user.name
+
   let success = req.flash("success");
   let errors = req.flash("errors");
 
@@ -556,6 +559,7 @@ const viewWriter = async (req, res) => {
     isAuth,
     user,
     userPost,
+    username
   });
 };
 

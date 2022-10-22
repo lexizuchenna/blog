@@ -1,10 +1,24 @@
 const Posts = require("../models/Post");
 
 const viewHome = async (req, res) => {
-  const posts = await Posts.find().lean().sort([['createdAt', -1]]);
-  const Business = posts.filter((post) => post.category.toLowerCase() === "business");
+  const posts = await Posts.find()
+    .lean()
+    .sort([["createdAt", -1]]);
+  const Business = posts.filter(
+    (post) => post.category.toLowerCase() === "business"
+  );
 
-  const leftSide = posts.slice(0, 3)
+  const leftSide = posts.slice(0, 3);
+  const recentPosts = posts.slice(3, 8);
+  const mainPosts = posts.slice(3, 6);
+  
+  const trendingData = await Posts.find()
+    .lean()
+    .sort([["views", -1]]);
+  
+  let trending = trendingData.filter((x) => x.image.data !== null)
+  let trendingPost = trending[0]
+
   const data = posts.map((post) => {
     return post.category;
   });
@@ -18,9 +32,17 @@ const viewHome = async (req, res) => {
     user = req.user.role === "admin" ? "admin" : "user";
   }
 
-  return res
-    .status(200)
-    .render("home", { posts, categories, isAuth, user, Business, leftSide });
+  return res.status(200).render("home", {
+    posts,
+    categories,
+    isAuth,
+    user,
+    Business,
+    leftSide,
+    recentPosts,
+    mainPosts,
+    trendingPost
+  });
 };
 const viewAbout = async (req, res) => {
   const posts = await Posts.find().lean();
